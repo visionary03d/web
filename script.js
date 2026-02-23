@@ -94,7 +94,7 @@ const THEME_KEY = "visionary-theme";
     let phone=document.getElementById("phone").value;
     let msg=document.getElementById("message").value;
     let text=`Hola, soy ${name}. Mi número es ${phone}. Deseo: ${msg}`;
-    let url=`https://wa.me/573229191519?text=${encodeURIComponent(text)}`;
+    let url=`https://wa.me/573007258766?text=${encodeURIComponent(text)}`;
     window.open(url,"_blank");
   }
   // Comprar producto
@@ -191,4 +191,5 @@ const THEME_KEY = "visionary-theme";
       }
     });
   })();
+
 
