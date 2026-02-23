@@ -1,660 +1,17 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VISIONARY 3D</title>
-  <style>
-    * {margin:0; padding:0; box-sizing:border-box; font-family:Arial, sans-serif;}
-    body {
-      background: linear-gradient(120deg, #fff 0%, #000 100%);
-      color:#000;
-    }
-    header {
-      background:rgba(0,0,0,0.85);
-      color:#fff;
-      padding:15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position:fixed;
-      width:100%;
-      top:0; left:0; z-index:1000;
-      box-shadow:0 8px 32px rgba(0,0,0,0.18);
-      backdrop-filter: blur(6px);
-      border-bottom:1px solid rgba(255,255,255,0.08);
-    }
-    header h1 {
-      flex:1;
-      text-align:center;
-      margin:0;
-      font-size:1.5rem;
-    }
-    img {
-      max-width: 100%;
-      max-height: 100%;
-      display: block;
-      object-fit: cover;
-      aspect-ratio: 1/1;
-      border-radius: 12px;
-    }
-    /* Excepción para los logos de redes sociales */
-    .social-icon {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover !important;
-      border-radius: 50%;
-      display: block;
-      margin: 0;
-      padding: 0;
-      background: none;
-      box-shadow: none;
-      /* Elimina el aspect-ratio y border-radius heredado de img */
-      aspect-ratio: unset;
-      border-radius: 50% !important;
-    }
-    .logo-circle {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      aspect-ratio: 1/1;
-      background: #000;
-      border: 4px solid #fff;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.18);
-      margin-bottom: 20px;
-      display: block;
-    }
-    .menu-area {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-left: auto;
-    }
-    .menu-label {
-      font-size: 1.1rem;
-      color: #fff;
-      font-weight: bold;
-      letter-spacing: 1px;
-      display: none;
-    }
-    .menu-toggle {
-      display: block;
-      cursor: pointer;
-      font-size: 1.5rem;
-      color: #fff;
-      background: none;
-      border: none;
-      padding: 0 8px;
-    }
-    nav ul {
-      list-style:none;
-      display:flex;
-      gap:20px;
-      background:rgba(0,0,0,0.5);
-      border-radius:20px;
-      padding:8px 18px;
-      backdrop-filter: blur(4px);
-      box-shadow:0 2px 12px rgba(0,0,0,0.10);
-    }
-    nav a {
-      color:#fff;
-      text-decoration:none;
-      font-weight:bold;
-      transition:0.3s;
-      padding:6px 12px;
-      border-radius:10px;
-    }
-    nav a:hover {
-      background:rgba(255,255,255,0.12);
-      color:#fff;
-    }
-    section {
-      min-height:100vh;
-      display:none;
-      padding:80px 20px 50px;
-      opacity:0;
-      transform:translateY(20px);
-      background:rgba(255,255,255,0.55);
-      border-radius:30px;
-      box-shadow:0 8px 32px rgba(0,0,0,0.12);
-      backdrop-filter: blur(8px);
-      margin:30px auto 0;
-      max-width:1100px;
-      transition:box-shadow 0.3s;
-    }
-    section.active {
-      display:block;
-      animation:fadeSlide 0.8s forwards;
-    }
-    section h2 {
-      text-align: center;
-      width: 100%;
-      margin-top: 0;
-      margin-bottom: 10px;
-      padding-top: 0;
-    }
-    @keyframes fadeSlide {
-      from {opacity:0; transform:translateY(30px);}
-      to {opacity:1; transform:translateY(0);}
-    }
-    .hero {
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      text-align:center;
-      background:rgba(255,255,255,0.45);
-      box-shadow:0 4px 24px rgba(80,80,255,0.10);
-      backdrop-filter: blur(10px);
-    }
-    .hero img {
-      max-width:150px;
-      margin-bottom:20px;
-      filter:drop-shadow(0 4px 12px rgba(0,0,0,0.25));
-    }
-    .btn {
-      /* reemplazado: ahora usa gradiente animado que se desliza al hover */
-      background: linear-gradient(90deg, #000 0%, #fff 100%);
-      background-size: 200% 100%;
-      background-position: 0% 50%;
-      color: #fff; /* texto claro sobre la zona oscura inicial */
-      padding:12px 25px;
-      border:none;
-      border-radius:12px;
-      cursor:pointer;
-      transition: background-position 0.45s ease, color 0.25s ease, transform 0.18s ease, box-shadow 0.18s ease;
-      font-weight:bold;
-      box-shadow:0 2px 12px rgba(99,102,241,0.18);
-      border:1px solid rgba(0,0,0,0.6);
-    }
-    .btn:hover {
-      /* al hover se desliza el degradado mostrando la zona clara y se ajusta el color de texto */
-      background-position: 100% 50%;
-      color: #000;
-      transform: translateY(-3px) scale(1.02);
-      box-shadow:0 10px 30px rgba(0,0,0,0.20);
-    }
-    .grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-      gap:28px;
-      margin-top:30px;
-    }
-    .card {
-      background:rgba(0,0,0,0.45);
-      color:#fff;
-      border-radius:20px;
-      box-shadow:0 6px 24px rgba(0,0,0,0.18), 0 1.5px 8px rgba(255,255,255,0.08);
-      padding:24px;
-      text-align:center;
-      transition:all 0.4s cubic-bezier(.4,0,.2,1);
-      backdrop-filter: blur(6px);
-      border:1px solid rgba(255,255,255,0.12);
-    }
-    .card:hover {
-      border:1.5px solid #fff;
-      box-shadow:0 12px 32px rgba(0,0,0,0.25), 0 2px 16px rgba(255,255,255,0.10);
-      transform:translateY(-10px) scale(1.03);
-    }
-    .card img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      aspect-ratio: 1/1;
-      border-radius: 12px;
-      margin-bottom: 15px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
-    }
-    .form {
-      max-width:400px;
-      margin:0 auto;
-      display:flex;
-      flex-direction:column;
-      gap:15px;
-      background:rgba(255,255,255,0.35);
-      border-radius:18px;
-      padding:24px;
-      box-shadow:0 2px 12px rgba(99,102,241,0.10);
-      backdrop-filter: blur(6px);
-    }
-    .form input, .form textarea {
-      padding:12px;
-      border:1px solid #000;
-      border-radius:10px;
-      font-size:1rem;
-      transition:0.3s;
-      background:rgba(255,255,255,0.7);
-      box-shadow:0 1px 6px rgba(99,102,241,0.07);
-    }
-    .form input:focus, .form textarea:focus {
-      border-color:#000;
-      box-shadow:0 0 10px rgba(0,0,0,0.18);
-      outline:none;
-      background:rgba(255,255,255,0.95);
-    }
-    footer {
-      background:rgba(0,0,0,0.85);
-      color:#fff;
-      text-align:center;
-      padding:20px;
-      margin-top:40px;
-      box-shadow:0 -4px 24px rgba(0,0,0,0.12);
-      backdrop-filter: blur(6px);
-      border-radius:20px 20px 0 0;
-      max-width:1100px;
-      margin-left:auto;
-      margin-right:auto;
-    }
-    /* Nuevo estilo para el select de categorías (se ve como un "pill" acorde a la página) */
-    .category-box {
-      /* dejamos el contenedor ligero; el fondo lo aporta el select */
-      display: flex;
-      align-items: center;
-      gap: 0;
-      background: transparent;
-      padding: 0;
-    }
-
-    .category-box select {
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.08));
-      color: #fff;
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 999px;
-      padding: 8px 40px 8px 14px; /* espacio para la flecha a la derecha */
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
-      background-repeat: no-repeat;
-      background-position: right 12px center;
-      background-size: 14px;
-      transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
-    }
-
-    /* foco y estado hover coherente con botones */
-    .category-box select:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 26px rgba(16,24,40,0.12);
-    }
-    .category-box select:focus {
-      outline: none;
-      border-color: rgba(255,255,255,0.22);
-      box-shadow: 0 12px 30px rgba(16,24,40,0.20);
-    }
-
-    /* Opciones: muchos navegadores no permiten estilos completos, pero al menos definimos tipografía y fondo para navegadores que sí lo usan */
-    .category-box select option {
-      background: #fff;
-      color: #111;
-      font-weight: 600;
-    }
-
-    /* Ocultar flecha nativa en IE/Edge */
-    .category-box select::-ms-expand { display: none; }
-
-    /* Ajustes en mobile para que encaje con el comportamiento de la lupa */
-    @media (max-width: 600px) {
-      .category-box select {
-        padding: 8px 36px 8px 10px;
-        font-size: 0.95rem;
-      }
-    }
-    /* Responsive menu */
-    @media (max-width:768px){
-      nav ul {
-        flex-direction:column;
-        gap:10px;
-        position:absolute;
-        top:60px; left:0; right:0;
-        background:rgba(0,0,0,0.85);
-        padding:20px;
-        display:none;
-        border-radius:0 0 20px 20px;
-        box-shadow:0 8px 32px rgba(0,0,0,0.18);
-        backdrop-filter: blur(8px);
-      }
-      nav ul.active {display:flex;}
-      .menu-toggle {display:block; cursor:pointer; font-size:1.5rem;}
-    }
-    @media (min-width:769px){
-      .menu-label {
-        display: none !important;
-      }
-      .menu-toggle {display:none;}
-    }
-    @media (max-width:768px){
-      .menu-label {
-        display: none;
-      }
-      .menu-toggle {
-        display: block;
-      }
-    }
-    @media (max-width:768px) and (min-width:500px){
-      .menu-label {
-        display: inline;
-      }
-      nav ul.active ~ .menu-area .menu-label {
-        display: none !important;
-      }
-    }
-    .social-area {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-    .social-title {
-      font-size: 1rem;
-      color: #222;
-      margin-bottom: 10px;
-      font-weight: bold;
-      letter-spacing: 0.5px;
-    }
-    .social-buttons {
-      display: flex;
-      gap: 18px;
-    }
-    .social-btn {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: box-shadow 0.2s, border 0.2s;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-      border: 3px solid #ffffff;
-      overflow: hidden;
-      padding: 0;
-      position: relative;
-    }
-    .social-btn:hover {
-      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
-      border: 2px solid #222;
-    }
-    .social-icon {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover !important;
-      border-radius: 50%;
-      display: block;
-      margin: 0;
-      padding: 0;
-      background: none;
-      box-shadow: none;
-      /* Elimina el aspect-ratio y border-radius heredado de img */
-      aspect-ratio: unset;
-      border-radius: 50% !important;
-    }
-    .social-btn .facebook-icon,
-    .social-btn .tiktok-icon {
-      width: 110% !important;
-      height: 110% !important;
-      left: -8%;
-      top: 0%;
-      position: absolute;
-    }
-    .social-btn .tiktok-icon{
-      width: 130% !important;
-      height: 130% !important;
-      left: -16%;
-      top: 0%;
-      position: absolute;
-    }
-    .product-filters {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 24px;
-    }
-    .search-box {
-      display: flex;
-      align-items: center;
-      background: rgba(0, 0, 0, 0.08);
-      border-radius: 12px;
-      padding: 6px 12px;
-      margin-right: 0;
-    }
-    .search-box svg {
-      margin-right: 8px;
-      min-width: 22px;
-    }
-    .search-box input {
-      border: none;
-      background: transparent;
-      outline: none;
-      font-size: 1rem;
-      color: #222;
-      width: 140px;
-    }
-    /* Estilos para sección "¿Quiénes somos?" con tarjetas separadas */
-    .about-cards {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      margin-top: 8px;
-    }
-    .about-card {
-      background: rgba(255,255,255,0.95);
-      color: #111;
-      border-radius: 16px;
-      box-shadow: 0 8px 30px rgba(16,24,40,0.12);
-      padding: 22px;
-      max-width: 360px;
-      flex: 1 1 300px;
-      text-align: center;
-    }
-    .about-card h3 {
-      margin-top: 0;
-      margin-bottom: 10px;
-      font-size: 1.25rem;
-    }
-    .about-card p, .about-card ul {
-      text-align: left;
-      color: #222;
-      line-height: 1.45;
-    }
-    .about-card ul {
-      padding-left: 18px;
-    }
-    /* En móviles, apilar tarjetas */
-    @media (max-width: 720px){
-      .about-cards { flex-direction: column; align-items: stretch; }
-      .about-card { max-width: none; }
-      .about-card p, .about-card ul { text-align: left; }
-    }
-    @media (max-width: 600px) {
-      .product-filters {
-        flex-direction: row;
-        gap: 8px;
-        justify-content: flex-start;
-      }
-      .search-box input {
-        display: none;
-      }
-      .search-box.active input {
-        display: block;
-        position: absolute;
-        left: 36px;
-        top: 0;
-        width: 120px;
-        background: #fff;
-        border-radius: 8px;
-        padding: 4px 8px;
-        z-index: 2;
-        border: 1px solid #ccc;
-        font-size: 1rem;
-        color: #222;
-      }
-      .search-box {
-        position: relative;
-        cursor: pointer;
-      }
-    }
-
-    /* Dropdown personalizado para categorías (mantiene select oculto para compatibilidad) */
-    .category-box { display:flex; align-items:center; gap:8px; background:transparent; padding:0; position:relative; }
-
-    .custom-select {
-      position: relative;
-      min-width:150px;
-    }
-    .select-toggle {
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      /* más oscuro para mayor contraste */
-      background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.34));
-      color:#fff;
-      border: 1px solid rgba(255,255,255,0.08);
-      padding:8px 14px;
-      border-radius:999px;
-      cursor:pointer;
-      font-weight:700;
-      box-shadow:0 10px 28px rgba(0,0,0,0.28);
-    }
-    .select-toggle svg { transform: translateY(1px); }
-
-    .select-options {
-      position:absolute;
-      top:calc(100% + 10px);
-      left:0;
-      right:auto;
-      background:#fff;
-      color:#111;
-      border-radius:12px;
-      box-shadow:0 12px 40px rgba(16,24,40,0.12);
-      overflow:hidden;
-      padding:8px;
-      z-index:1200;
-      width:280px;
-      max-height:260px;
-      overflow-y:auto;
-      display:none;
-    }
-    .select-options.open { display:block; }
-
-    .select-options li {
-      list-style:none;
-      padding:10px 12px;
-      border-radius:10px;
-      cursor:pointer;
-      font-weight:600;
-      transition:background .12s, transform .08s;
-    }
-    .select-options li + li { margin-top:6px; }
-    .select-options li:hover { background: rgba(0,0,0,0.06); transform: translateY(-2px); }
-    .select-options li.active { background: linear-gradient(90deg,#000 0%, #444 100%); color:#fff; }
-
-    /* Mobile: ancho flexible */
-    @media (max-width:600px){
-      .select-options { width: 220px; left:0; right:auto; }
-      .select-toggle { padding:8px 10px; }
-    }
-    /* Mejora: estilos para sección de contacto */
-    .contact-section {
-      padding: 60px 20px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.5));
-      border-radius: 20px;
-      box-shadow: 0 10px 40px rgba(10,10,30,0.08);
-      margin: 20px auto 0;
-    }
-    .contact-container {
-      /* Ajuste: centrar formulario al quitar la tarjeta de contacto */
-      display: block;
-      max-width: 720px;
-      margin: 0 auto;
-      gap: 0;
-    }
-    /* Form más destacado */
-    .contact-form {
-      background: rgba(0,0,0,0.55);
-      padding: 24px;
-      border-radius: 16px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.18);
-    }
-    .contact-form h2 {
-      color: #fff;
-      margin-bottom: 12px;
-      text-align: left;
-    }
-    .contact-fields { display: grid; gap:12px; }
-    .contact-fields input, .contact-fields textarea {
-      width:100%;
-      padding:12px 14px;
-      border-radius:10px;
-      border:1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.92);
-      color:#111;
-      font-size:1rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    }
-    .contact-fields textarea { min-height:120px; resize:vertical; }
-    .contact-actions {
-      display:flex;
-      gap:12px;
-      margin-top:8px;
-      flex-wrap:wrap;
-      justify-content: center; /* centrado horizontal */
-    }
-    /* Centrar el botón y añadir animación */
-    @keyframes floatBtn {
-      0%   { transform: translateY(0); }
-      50%  { transform: translateY(-6px); }
-      100% { transform: translateY(0); }
-    }
-
-    .btn-send {
-      /* ahora usa el mismo degradado deslizante que .btn + animación flotante */
-      background: linear-gradient(90deg,#000 0%, #fff 100%);
-      background-size: 200% 100%;
-      background-position: 0% 50%;
-      color: #fff; /* texto claro sobre la zona oscura inicial */
-      padding:10px 18px;
-      border-radius:10px;
-      border:1px solid rgba(0,0,0,0.6);
-      font-weight:700;
-      cursor:pointer;
-      animation: floatBtn 4s ease-in-out infinite;
-      transition: background-position 0.45s ease, color 0.25s ease, transform 0.18s ease, box-shadow 0.18s ease;
-      box-shadow:0 2px 12px rgba(99,102,241,0.12);
-    }
-    .btn-send:hover {
-      /* desliza el degradado y ajusta color similar a .btn */
-      background-position: 100% 50%;
-      color: #000;
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 14px 40px rgba(0,0,0,0.18);
-    }
-
-    /* Respeto a usuarios que prefieren reducir movimiento */
-    @media (prefers-reduced-motion: reduce) {
-      .btn-send {
-        animation: none;
-        transition: none;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <header>
   <h1 style="flex:1; text-align:center; margin:0;">VISIONARY 3D</h1>
   <div class="menu-area">
+    <button type="button" class="theme-toggle" id="themeToggle" aria-label="Activar modo claro">Modo claro</button>
     <span class="menu-label">Menú</span>
     <div class="menu-toggle">☰</div>
   </div>
@@ -664,7 +21,6 @@
       <li><a href="#" data-section="services">Servicios</a></li>
       <li><a href="#" data-section="products">Productos</a></li>
       <li><a href="#" data-section="contact">Contacto</a></li>
-      <!-- Añadido enlace a la nueva sección -->
       <li><a href="#" data-section="about">¿Quiénes somos?</a></li>
     </ul>
   </nav>
@@ -688,9 +44,29 @@
       </div>
     </div>
   </div>
-  <h2>Transformamos tus ideas en realidad</h2>
-  <p>Impresión 3D | Modelado | Proyectos personalizados</p>
-  <button class="btn" onclick="showSection('services')">Ver servicios</button>
+  <div class="hero-copy">
+    <h2>Impresión 3D personalizada en Colombia</h2>
+    <p>De idea a pieza real con diseño, precisión y acabados que destacan.</p>
+    <p class="hero-microcopy">Creamos figuras, llaveros y proyectos a medida para estudio, regalo o negocio.</p>
+  </div>
+  <div class="hero-showcase" aria-label="Productos destacados">
+    <article class="hero-showcase-item">
+      <img src="productos/bowser.jpg" alt="Figura de Sonic">
+      <p>Figuras con personalidad</p>
+    </article>
+    <article class="hero-showcase-item">
+      <img src="productos/perrito pincher.jpg" alt="Llavero de perrito pincher">
+      <p>Llaveros únicos y creativos</p>
+    </article>
+    <article class="hero-showcase-item">
+      <img src="productos/corazon con iman.jpg" alt="llavero de corazón con iman">
+      <p>Detalles pensados para durar</p>
+    </article>
+    <article class="hero-showcase-item">
+      <img src="productos/inozuque.jpg" alt="Funko personalizado">
+      <p>Diseños 100% personalizados</p>
+    </article>
+  </div>
 </section>
 
 <section id="services">
@@ -699,7 +75,7 @@
     <div class="card">
       <h3>Solo impresión</h3>
       <p>No incluye material, No incluye diseño, calidad de impresión garantizada</p>
-      <p><strong>$10.000 por hora</strong></p>
+      <p><strong>$8.000 por hora(Minimo 1 hora)</strong></p>
     </div>
     <div class="card">
       <h3>Impresión 3D</h3>
@@ -708,7 +84,7 @@
     </div>
     <div class="card">
       <h3>Modelado 3D</h3>
-      <p>Diseños personalizados para tus proyectos(incluye diseño 3D).</p>
+      <p>Diseños personalizados para tus proyectos.</p>
       <p><strong>Precio según complejidad.</strong></p>
     </div>
     <div class="card">
@@ -763,6 +139,12 @@
     </div>
   </div>
   <div class="grid" id="productGrid">
+    <div class="card" data-category="llaveros">
+      <img src="productos/corazon con iman.jpg" alt="llavero-corazon con iman">
+      <h3>Corazón con iman(pareja)</h3>
+      <p><strong>$25.000</strong></p>
+      <button class="btn" onclick="buyProduct('llavero-corazon con iman')">Comprar</button>
+    </div>
     <div class="card" data-category="figuras">
       <img src="productos/inozuque.jpg" alt="inozuque 10cm">
       <h3>Inozuque 10cm</h3>
@@ -997,8 +379,20 @@
       <p><strong>$15.000</strong></p>
       <button class="btn" onclick="buyProduct('llavero-Dinosaurio articulado')">Comprar</button>
     </div>
+    <div class="card" data-category="llaveros">
+      <img src="productos/gallo.jpg" alt="llavero-gallo">
+      <h3>Gallo</h3>
+      <p><strong>$20.000</strong></p>
+      <button class="btn" onclick="buyProduct('llavero-gallo')">Comprar</button>
+    </div>
+    <div class="card" data-category="llaveros">
+      <img src="productos/pareja de osos.jpg" alt="llaveros-pareja-de-osos">
+      <h3>pareja de osos</h3>
+      <p><strong>$30.000</strong></p>
+      <button class="btn" onclick="buyProduct('llaveros-pareja de osos')">Comprar</button>
+    </div>
     <div class="card" data-category="figuras">
-      <img src="productos/reno navideño.jpg" alt="llavero-reno navideño">
+      <img src="productos/reno navideño.jpg" alt="reno navideño">
       <h3>Reno navideño</h3>
       <p><strong>$3.000</strong></p>
       <button class="btn" onclick="buyProduct('llavero-reno navideño')">Comprar</button>
@@ -1053,154 +447,16 @@
   </div>
 </section>
 
+<div class="image-viewer" id="imageViewer" aria-hidden="true">
+  <img id="imageViewerImg" src="" alt="">
+</div>
+
 <footer>
   <p>© 2025 VISIONARY 3D | visionay03d@gmail.com</p>
 </footer>
 
-<script>
-  // Mostrar solo una sección
-  function showSection(id){
-    document.querySelectorAll("section").forEach(sec=>{
-      sec.classList.remove("active");
-      sec.style.display="none";
-    });
-    let section=document.getElementById(id);
-    section.style.display="block";
-    setTimeout(()=>section.classList.add("active"),50);
-    document.querySelector("nav ul").classList.remove("active");
-  }
-  // Menú links
-  document.querySelectorAll("nav a").forEach(link=>{
-    link.addEventListener("click", e=>{
-      e.preventDefault();
-      showSection(e.target.dataset.section);
-    });
-  });
-  // Iniciar en Hero
-  showSection("hero");
-  // Menú toggle móvil
-  document.querySelector(".menu-toggle").addEventListener("click", ()=>{
-    document.querySelector("nav ul").classList.toggle("active");
-  });
-
-  // Ocultar menú al hacer clic fuera del menú en móvil
-  document.addEventListener("click", function(e) {
-    const menuToggle = document.querySelector(".menu-toggle");
-    const navUl = document.querySelector("nav ul");
-    // Solo aplica en pantallas pequeñas y si el menú está abierto
-    if (window.innerWidth <= 768 && navUl.classList.contains("active")) {
-      // Si el clic NO es en el menú ni en el icono del menú
-      if (!navUl.contains(e.target) && !menuToggle.contains(e.target)) {
-        navUl.classList.remove("active");
-      }
-    }
-  });
-
-  // WhatsApp
-  function sendWhatsApp(e){
-    e.preventDefault();
-    let name=document.getElementById("name").value;
-    let phone=document.getElementById("phone").value;
-    let msg=document.getElementById("message").value;
-    let text=`Hola, soy ${name}. Mi número es ${phone}. Deseo: ${msg}`;
-    let url=`https://wa.me/573229191519?text=${encodeURIComponent(text)}`;
-    window.open(url,"_blank");
-  }
-  // Comprar producto
-  function buyProduct(product){
-    let text=`Hola, quiero comprar el artículo: ${product}`;
-    let url=`https://wa.me/573229191519?text=${encodeURIComponent(text)}`;
-    window.open(url,"_blank");
-  }
-  // Filtrar productos por búsqueda y categoría
-  function filterProducts() {
-    const search = document.getElementById('productSearch').value.toLowerCase();
-    const category = document.getElementById('productCategory').value;
-    document.querySelectorAll('#productGrid .card').forEach(card => {
-      const title = card.querySelector('h3').textContent.toLowerCase();
-      const cat = card.getAttribute('data-category');
-      const matchCategory = (category === 'todos') || (cat === category);
-      const matchSearch = title.includes(search);
-      card.style.display = (matchCategory && matchSearch) ? '' : 'none';
-    });
-  }
-  document.getElementById('productSearch').addEventListener('input', filterProducts);
-  document.getElementById('productCategory').addEventListener('change', filterProducts);
-
-  // Mostrar input al tocar la lupa en móvil
-  function showSearchInputMobile() {
-    const searchBox = document.getElementById('searchBox');
-    const input = document.getElementById('productSearch');
-    if (window.innerWidth <= 600) {
-      searchBox.classList.add('active');
-      input.style.display = 'block';
-      input.focus();
-    }
-  }
-  document.getElementById('searchIcon').addEventListener('click', showSearchInputMobile);
-
-  // Ocultar input al perder foco en móvil
-  document.getElementById('productSearch').addEventListener('blur', function() {
-    if (window.innerWidth <= 600) {
-      document.getElementById('searchBox').classList.remove('active');
-      this.style.display = 'none';
-    }
-  });
-
-  // Dropdown personalizado: sincroniza con #productCategory (select oculto) y dispara filterProducts
-  (function(){
-    const toggle = document.getElementById('selectToggle');
-    const list = document.getElementById('selectOptions');
-    const label = document.getElementById('selectLabel');
-    const hidden = document.getElementById('productCategory');
-    const custom = document.getElementById('customCategory');
-
-    function openList(){ list.classList.add('open'); custom.setAttribute('aria-expanded','true'); toggle.setAttribute('aria-expanded','true'); }
-    function closeList(){ list.classList.remove('open'); custom.setAttribute('aria-expanded','false'); toggle.setAttribute('aria-expanded','false'); }
-    function toggleList(){ list.classList.contains('open') ? closeList() : openList(); }
-
-    // click en botón
-    toggle.addEventListener('click', (e)=>{ e.stopPropagation(); toggleList(); });
-
-    // click en opción
-    list.addEventListener('click', (e)=>{
-      const li = e.target.closest('li');
-      if(!li) return;
-      // marcar visualmente
-      list.querySelectorAll('li').forEach(n=>n.classList.remove('active'));
-      li.classList.add('active');
-      // actualizar label y select oculto
-      label.textContent = li.textContent;
-      hidden.value = li.dataset.value;
-      // disparar evento change para que filterProducts (ya ligado) se ejecute
-      hidden.dispatchEvent(new Event('change', { bubbles:true }));
-      closeList();
-    });
-
-    // cerrar al hacer clic fuera
-    document.addEventListener('click', (e)=>{
-      if (!custom.contains(e.target)) closeList();
-    });
-
-    // teclado: Esc cierra, Enter/Space abre o selecciona la opción focalizada
-    document.addEventListener('keydown', (e)=>{
-      if(list.classList.contains('open')){
-        if(e.key === 'Escape'){ closeList(); toggle.focus(); }
-      }
-    });
-
-    // inicializar (asegura sync si el select cambia por JS)
-    hidden.addEventListener('change', ()=>{
-      const val = hidden.value;
-      const option = list.querySelector(`li[data-value="${val}"]`);
-      if(option){
-        list.querySelectorAll('li').forEach(n=>n.classList.remove('active'));
-        option.classList.add('active');
-        label.textContent = option.textContent;
-      }
-    });
-  })();
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
+
