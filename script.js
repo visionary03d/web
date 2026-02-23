@@ -100,7 +100,7 @@ const THEME_KEY = "visionary-theme";
   // Comprar producto
   function buyProduct(product){
     let text=`Hola, quiero comprar el artículo: ${product}`;
-    let url=`https://wa.me/573229191519?text=${encodeURIComponent(text)}`;
+    let url=`https://wa.me/573007258766?text=${encodeURIComponent(text)}`;
     window.open(url,"_blank");
   }
   // Filtrar productos por búsqueda y categoría
@@ -191,5 +191,6 @@ const THEME_KEY = "visionary-theme";
       }
     });
   })();
+
 
 
