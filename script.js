@@ -67,6 +67,17 @@ const THEME_KEY = "visionary-theme";
       showSection(e.target.dataset.section);
     });
   });
+  // Accesos directos desde el bloque destacado del inicio hacia productos
+  document.querySelectorAll(".hero-showcase-item[data-target-section]").forEach(item => {
+    const targetSection = item.dataset.targetSection;
+    item.addEventListener("click", () => showSection(targetSection));
+    item.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        showSection(targetSection);
+      }
+    });
+  });
   // Iniciar en Hero
   showSection("hero");
   // Menú toggle móvil
@@ -94,7 +105,7 @@ const THEME_KEY = "visionary-theme";
     let phone=document.getElementById("phone").value;
     let msg=document.getElementById("message").value;
     let text=`Hola, soy ${name}. Mi número es ${phone}. Deseo: ${msg}`;
-    let url=`https://wa.me/573007258766?text=${encodeURIComponent(text)}`;
+    let url=`https://wa.me/573229191519?text=${encodeURIComponent(text)}`;
     window.open(url,"_blank");
   }
   // Comprar producto
@@ -191,6 +202,4 @@ const THEME_KEY = "visionary-theme";
       }
     });
   })();
-
-
 
