@@ -686,25 +686,38 @@
         justify-content: flex-start;
       }
       .search-box input {
-        display: none;
+        display: block;
+        width: 0;
+        opacity: 0;
+        pointer-events: none;
+        margin: 0;
+        padding: 0;
+        transition: width 0.22s ease, opacity 0.18s ease;
       }
       .search-box.active input {
-        display: block;
-        position: absolute;
-        left: 36px;
-        top: 0;
-        width: 120px;
-        background: #fff;
-        border-radius: 8px;
-        padding: 4px 8px;
-        z-index: 2;
-        border: 1px solid #ccc;
-        font-size: 1rem;
-        color: #222;
+        width: 100%;
+        opacity: 1;
+        pointer-events: auto;
       }
       .search-box {
         position: relative;
         cursor: pointer;
+        width: 42px;
+        min-width: 42px;
+        padding: 8px 10px;
+        justify-content: center;
+        transition: width 0.22s ease, background 0.2s ease;
+        overflow: hidden;
+      }
+      .search-box svg {
+        margin-right: 0;
+      }
+      .search-box.active {
+        width: min(58vw, 220px);
+        justify-content: flex-start;
+      }
+      .search-box.active svg {
+        margin-right: 8px;
       }
     }
 
@@ -1017,6 +1030,14 @@
       color: #111;
       border-color: rgba(0,0,0,0.14);
       box-shadow: 0 8px 20px rgba(15,23,42,0.12);
+    }
+    body.light-mode .select-options li:hover {
+      background: linear-gradient(135deg, rgba(112,40,208,0.10), rgba(16,112,192,0.09));
+    }
+    body.light-mode .select-options li.active {
+      background: linear-gradient(135deg, rgba(112,40,208,0.88), rgba(104,96,216,0.86) 45%, rgba(16,112,192,0.84));
+      color: #fff;
+      box-shadow: 0 8px 18px rgba(104,96,216,0.22);
     }
     body.light-mode .contact-section {
       background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(240,244,252,0.86));

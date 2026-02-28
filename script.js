@@ -155,8 +155,7 @@ const THEME_KEY = "visionary-theme";
     const input = document.getElementById('productSearch');
     if (window.innerWidth <= 600) {
       searchBox.classList.add('active');
-      input.style.display = 'block';
-      input.focus();
+      setTimeout(() => input.focus(), 10);
     }
   }
   document.getElementById('searchIcon').addEventListener('click', showSearchInputMobile);
@@ -164,8 +163,18 @@ const THEME_KEY = "visionary-theme";
   // Ocultar input al perder foco en móvil
   document.getElementById('productSearch').addEventListener('blur', function() {
     if (window.innerWidth <= 600) {
-      document.getElementById('searchBox').classList.remove('active');
-      this.style.display = 'none';
+      const searchBox = document.getElementById('searchBox');
+      if (!this.value.trim()) {
+        searchBox.classList.remove('active');
+      }
+    }
+  });
+  document.addEventListener('click', (e) => {
+    if (window.innerWidth > 600) return;
+    const searchBox = document.getElementById('searchBox');
+    const input = document.getElementById('productSearch');
+    if (!searchBox.contains(e.target) && !input.value.trim()) {
+      searchBox.classList.remove('active');
     }
   });
 
