@@ -1,10 +1,25 @@
 const THEME_KEY = "visionary-theme";
   const themeToggle = document.getElementById("themeToggle");
+  const THEME_ICON_BREAKPOINT = 560;
+
+  function updateThemeToggleContent(isLight){
+    const compactToggle = window.innerWidth <= THEME_ICON_BREAKPOINT;
+    if (compactToggle) {
+      themeToggle.classList.add("compact");
+      themeToggle.textContent = isLight ? "☀️" : "🌙";
+      themeToggle.setAttribute("title", isLight ? "Cambiar a modo oscuro" : "Cambiar a modo claro");
+      return;
+    }
+
+    themeToggle.classList.remove("compact");
+    themeToggle.textContent = isLight ? "Modo oscuro" : "Modo claro";
+    themeToggle.setAttribute("title", "");
+  }
 
   function applyTheme(theme){
     const isLight = theme === "light";
     document.body.classList.toggle("light-mode", isLight);
-    themeToggle.textContent = isLight ? "Modo oscuro" : "Modo claro";
+    updateThemeToggleContent(isLight);
     themeToggle.setAttribute("aria-label", isLight ? "Activar modo oscuro" : "Activar modo claro");
   }
 
@@ -15,6 +30,11 @@ const THEME_KEY = "visionary-theme";
     const nextTheme = document.body.classList.contains("light-mode") ? "dark" : "light";
     applyTheme(nextTheme);
     localStorage.setItem(THEME_KEY, nextTheme);
+  });
+
+  window.addEventListener("resize", () => {
+    const isLight = document.body.classList.contains("light-mode");
+    updateThemeToggleContent(isLight);
   });
 
   // Mostrar solo una sección

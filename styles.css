@@ -98,6 +98,25 @@
       background: rgba(255,255,255,0.12);
       border-color: rgba(255,255,255,0.75);
     }
+    .theme-toggle.compact {
+      width: auto;
+      height: auto;
+      padding: 0 2px;
+      border: none;
+      background: transparent;
+      box-shadow: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      line-height: 1;
+    }
+    .theme-toggle.compact:hover {
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      opacity: 0.82;
+    }
     nav ul {
       list-style:none;
       display:flex;
@@ -856,6 +875,12 @@
     body.light-mode .theme-toggle:hover {
       background: rgba(0,0,0,0.08);
       border-color: rgba(0,0,0,0.38);
+    }
+    body.light-mode .theme-toggle.compact:hover {
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      opacity: 0.82;
     }
     body.light-mode nav ul {
       background: rgba(255,255,255,0.86);
