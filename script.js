@@ -1,4 +1,4 @@
-const THEME_KEY = "visionary-theme";
+﻿const THEME_KEY = "visionary-theme";
   const themeToggle = document.getElementById("themeToggle");
   const THEME_ICON_BREAKPOINT = 560;
 
@@ -6,7 +6,7 @@ const THEME_KEY = "visionary-theme";
     const compactToggle = window.innerWidth <= THEME_ICON_BREAKPOINT;
     if (compactToggle) {
       themeToggle.classList.add("compact");
-      themeToggle.textContent = isLight ? "☀️" : "🌙";
+      themeToggle.textContent = isLight ? "â˜€ï¸" : "ðŸŒ™";
       themeToggle.setAttribute("title", isLight ? "Cambiar a modo oscuro" : "Cambiar a modo claro");
       return;
     }
@@ -37,7 +37,7 @@ const THEME_KEY = "visionary-theme";
     updateThemeToggleContent(isLight);
   });
 
-  // Mostrar solo una sección
+  // Mostrar solo una secciÃ³n
   const imageViewer = document.getElementById("imageViewer");
   const imageViewerImg = document.getElementById("imageViewerImg");
 
@@ -77,10 +77,12 @@ const THEME_KEY = "visionary-theme";
     });
     let section=document.getElementById(id);
     section.style.display="block";
+    // Reinicia la vista al inicio de la sección para no quedar en el último producto
+    window.scrollTo({ top: 0, behavior: "smooth" });
     setTimeout(()=>section.classList.add("active"),50);
     document.querySelector("nav ul").classList.remove("active");
   }
-  // Menú links
+  // MenÃº links
   document.querySelectorAll("nav a").forEach(link=>{
     link.addEventListener("click", e=>{
       e.preventDefault();
@@ -100,18 +102,18 @@ const THEME_KEY = "visionary-theme";
   });
   // Iniciar en Hero
   showSection("hero");
-  // Menú toggle móvil
+  // MenÃº toggle mÃ³vil
   document.querySelector(".menu-toggle").addEventListener("click", ()=>{
     document.querySelector("nav ul").classList.toggle("active");
   });
 
-  // Ocultar menú al hacer clic fuera del menú en móvil
+  // Ocultar menÃº al hacer clic fuera del menÃº en mÃ³vil
   document.addEventListener("click", function(e) {
     const menuToggle = document.querySelector(".menu-toggle");
     const navUl = document.querySelector("nav ul");
-    // Solo aplica en pantallas pequeñas y si el menú está abierto
+    // Solo aplica en pantallas pequeÃ±as y si el menÃº estÃ¡ abierto
     if (window.innerWidth <= 768 && navUl.classList.contains("active")) {
-      // Si el clic NO es en el menú ni en el icono del menú
+      // Si el clic NO es en el menÃº ni en el icono del menÃº
       if (!navUl.contains(e.target) && !menuToggle.contains(e.target)) {
         navUl.classList.remove("active");
       }
@@ -122,19 +124,18 @@ const THEME_KEY = "visionary-theme";
   function sendWhatsApp(e){
     e.preventDefault();
     let name=document.getElementById("name").value;
-    let phone=document.getElementById("phone").value;
     let msg=document.getElementById("message").value;
-    let text=`Hola, soy ${name}. Mi número es ${phone}. Deseo: ${msg}`;
+    let text=`Hola, soy ${name}. Deseo: ${msg}`;
     let url=`https://wa.me/573229191519?text=${encodeURIComponent(text)}`;
     window.open(url,"_blank");
   }
   // Comprar producto
   function buyProduct(product){
-    let text=`Hola, quiero comprar el artículo: ${product}`;
+    let text=`Hola, quiero comprar el artÃ­culo: ${product}`;
     let url=`https://wa.me/573007258766?text=${encodeURIComponent(text)}`;
     window.open(url,"_blank");
   }
-  // Filtrar productos por búsqueda y categoría
+  // Filtrar productos por bÃºsqueda y categorÃ­a
   function filterProducts() {
     const search = document.getElementById('productSearch').value.toLowerCase();
     const category = document.getElementById('productCategory').value;
@@ -149,7 +150,7 @@ const THEME_KEY = "visionary-theme";
   document.getElementById('productSearch').addEventListener('input', filterProducts);
   document.getElementById('productCategory').addEventListener('change', filterProducts);
 
-  // Mostrar input al tocar la lupa en móvil
+  // Mostrar input al tocar la lupa en mÃ³vil
   function showSearchInputMobile() {
     const searchBox = document.getElementById('searchBox');
     const input = document.getElementById('productSearch');
@@ -160,7 +161,7 @@ const THEME_KEY = "visionary-theme";
   }
   document.getElementById('searchIcon').addEventListener('click', showSearchInputMobile);
 
-  // Ocultar input al perder foco en móvil
+  // Ocultar input al perder foco en mÃ³vil
   document.getElementById('productSearch').addEventListener('blur', function() {
     if (window.innerWidth <= 600) {
       const searchBox = document.getElementById('searchBox');
@@ -190,10 +191,10 @@ const THEME_KEY = "visionary-theme";
     function closeList(){ list.classList.remove('open'); custom.setAttribute('aria-expanded','false'); toggle.setAttribute('aria-expanded','false'); }
     function toggleList(){ list.classList.contains('open') ? closeList() : openList(); }
 
-    // click en botón
+    // click en botÃ³n
     toggle.addEventListener('click', (e)=>{ e.stopPropagation(); toggleList(); });
 
-    // click en opción
+    // click en opciÃ³n
     list.addEventListener('click', (e)=>{
       const li = e.target.closest('li');
       if(!li) return;
@@ -213,7 +214,7 @@ const THEME_KEY = "visionary-theme";
       if (!custom.contains(e.target)) closeList();
     });
 
-    // teclado: Esc cierra, Enter/Space abre o selecciona la opción focalizada
+    // teclado: Esc cierra, Enter/Space abre o selecciona la opciÃ³n focalizada
     document.addEventListener('keydown', (e)=>{
       if(list.classList.contains('open')){
         if(e.key === 'Escape'){ closeList(); toggle.focus(); }
@@ -231,4 +232,9 @@ const THEME_KEY = "visionary-theme";
       }
     });
   })();
+
+
+
+
+
 

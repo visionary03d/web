@@ -51,7 +51,7 @@
     <h2>Impresión 3D personalizada en Colombia</h2>
     <p>De idea a pieza real con diseño, precisión y acabados que destacan.</p>
     <p class="hero-microcopy">Creamos figuras, llaveros y proyectos a medida para estudio, regalo o negocio.</p>
-    <button type="button" class="btn hero-cta-btn" onclick="showSection('contact')">Realiza tu pedido ya</button>
+    <button type="button" class="btn hero-cta-btn" onclick="showSection('contact')"><span>Realiza tu pedido ya</span> <img src="redes/wasap.png" alt="WhatsApp" class="hero-cta-icon"></button>
   </div>
   <div class="hero-showcase" aria-label="Productos destacados">
     <article class="hero-showcase-item" data-target-section="products" role="button" tabindex="0" aria-label="Ver productos destacados">
@@ -77,13 +77,13 @@
   <h2>Servicios</h2>
   <div class="grid">
     <div class="card">
-      <h3>Solo impresión</h3>
+      <h3>Solo impresión 3D</h3>
       <p>Incluye impresión garantizada. Traer filamento y diseño.</p>
       <p><strong>$8.000 por hora(Minimo 1 hora)</strong></p>
     </div>
     <div class="card">
-      <h3>Impresión 3D</h3>
-      <p>Piezas funcionales, decorativas y más.</p>
+      <h3>Impresión 3D personalizada.</h3>
+      <p>Piezas funcionales, decorativas y más, según tus nesesidades y gustos.</p>
       <p><strong>Precio según complejidad(incluye diseño 3D).</strong></p>
     </div>
     <div class="card">
@@ -92,8 +92,8 @@
       <p><strong>Precio según complejidad.</strong></p>
     </div>
     <div class="card">
-      <h3>Proyectos Educativos</h3>
-      <p>Apoyo en trabajos universitarios y escolares(incluye diseño 3D).</p>
+      <h3>Asesoria para Proyectos Educativos</h3>
+      <p>Apoyo en trabajos universitarios y escolares, incluye diseño 3D segun la nesesidad.</p>
       <p><strong>Precio según complejidad.</strong></p>
     </div>
     <div class="card">
@@ -148,6 +148,12 @@
       <h3>Corazón con iman(pareja)</h3>
       <p><strong>$25.000</strong></p>
       <button class="btn" onclick="buyProduct('llavero-corazon con iman')">Comprar</button>
+    </div>
+    <div class="card" data-category="llaveros">
+      <img src="productos/wall-e.jpg" alt="llavero-wall-e">
+      <h3>Wall-E</h3>
+      <p><strong>$20.000</strong></p>
+      <button class="btn" onclick="buyProduct('llavero-wall-e')">Comprar</button>
     </div>
     <div class="card" data-category="figuras">
       <img src="productos/inozuque.jpg" alt="inozuque 10cm">
@@ -277,7 +283,7 @@
     </div>
     <div class="card" data-category="llaveros">
       <img src="productos/mario bros.jpg" alt="llavero-mario bros">
-      <h3>mario bros</h3>
+      <h3>Mario Bros</h3>
       <p><strong>$15.000</strong></p>
       <button class="btn" onclick="buyProduct('llavero-mario bros')">Comprar</button>
     </div>
@@ -301,7 +307,7 @@
     </div>
     <div class="card" data-category="llaveros">
       <img src="productos/tigre.jpg" alt="llavero-tigre">
-      <h3>tigre</h3>
+      <h3>Tigre</h3>
       <p><strong>$15.000</strong></p>
       <button class="btn" onclick="buyProduct('llavero-tigre')">Comprar</button>
     </div>
@@ -367,7 +373,7 @@
     </div>
     <div class="card" data-category="llaveros">
       <img src="productos/pikachu.jpg" alt="llavero-pikachu">
-      <h3>pikachu</h3>
+      <h3>Pikachu</h3>
       <p><strong>$15.000</strong></p>
       <button class="btn" onclick="buyProduct('llavero-pikachu')">Comprar</button>
     </div>
@@ -391,7 +397,7 @@
     </div>
     <div class="card" data-category="llaveros">
       <img src="productos/pareja de osos.jpg" alt="llaveros-pareja-de-osos">
-      <h3>pareja de osos</h3>
+      <h3>Pareja de osos</h3>
       <p><strong>$30.000</strong></p>
       <button class="btn" onclick="buyProduct('llaveros-pareja de osos')">Comprar</button>
     </div>
@@ -407,11 +413,10 @@
 <section id="contact" class="contact-section">
   <div class="contact-container">
     <div class="contact-form" style="margin:0 auto;">
-      <h2>Contacto</h2>
+      <h2 style="display:flex; align-items:center; justify-content:center; gap:8px;"><span>Contacto</span><img src="redes/wasap.png" alt="WhatsApp" style="width:22px;height:22px;object-fit:contain;display:inline-block;vertical-align:middle;border-radius:0;aspect-ratio:auto;"></h2>
       <p style="color:rgba(255,255,255,0.85); margin-bottom:12px;">Escríbenos y con gusto te responderemos.</p>
       <form class="contact-fields" onsubmit="sendWhatsApp(event)">
         <input type="text" id="name" placeholder="Tu nombre" required>
-        <input type="text" id="phone" placeholder="Tu número de teléfono" required>
         <textarea id="message" placeholder="¿Qué deseas?" rows="5" required></textarea>
         <div class="contact-actions">
           <button type="submit" class="btn-send">Enviar cotización</button>
@@ -463,4 +468,9 @@
 
 </body>
 </html>
+
+
+
+
+
 

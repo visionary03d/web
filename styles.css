@@ -1,4 +1,4 @@
-* {margin:0; padding:0; box-sizing:border-box; font-family:Arial, sans-serif;}
+﻿* {margin:0; padding:0; box-sizing:border-box; font-family:Arial, sans-serif;}
     body {
       background: linear-gradient(120deg, #fff 0%, #000 100%);
       color:#000;
@@ -31,7 +31,7 @@
       aspect-ratio: 1/1;
       border-radius: 12px;
     }
-    /* Excepción para los logos de redes sociales */
+    /* ExcepciÃ³n para los logos de redes sociales */
     .social-icon {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -258,8 +258,26 @@
       color: rgba(255,255,255,0.78) !important;
       font-size: 0.98rem !important;
     }
-    .hero-cta-btn {
+        .hero-cta-btn {
       margin-top: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      line-height: 1.2;
+    }
+    .hero-cta-btn .hero-cta-icon {
+      width: 18px;
+      height: 18px;
+      margin: 0;
+      max-width: none;
+      border-radius: 0;
+      aspect-ratio: auto;
+      object-fit: contain;
+      filter: none;
+      display: block;
+      vertical-align: middle;
+      flex: 0 0 auto;
     }
     .hero-showcase {
       z-index: 1;
@@ -435,7 +453,7 @@
       margin-left:auto;
       margin-right:auto;
     }
-    /* Nuevo estilo para el select de categorías (se ve como un "pill" acorde a la página) */
+    /* Nuevo estilo para el select de categorÃ­as (se ve como un "pill" acorde a la pÃ¡gina) */
     .category-box {
       /* dejamos el contenedor ligero; el fondo lo aporta el select */
       display: flex;
@@ -476,7 +494,7 @@
       box-shadow: 0 12px 30px rgba(16,24,40,0.20);
     }
 
-    /* Opciones: muchos navegadores no permiten estilos completos, pero al menos definimos tipografía y fondo para navegadores que sí lo usan */
+    /* Opciones: muchos navegadores no permiten estilos completos, pero al menos definimos tipografÃ­a y fondo para navegadores que sÃ­ lo usan */
     .category-box select option {
       background: #fff;
       color: #111;
@@ -640,7 +658,7 @@
       color: #222;
       width: 140px;
     }
-    /* Estilos para sección "¿Quiénes somos?" con tarjetas separadas */
+    /* Estilos para secciÃ³n "Â¿QuiÃ©nes somos?" con tarjetas separadas */
     .about-cards {
       display: flex;
       gap: 20px;
@@ -673,7 +691,7 @@
       padding-left: 0;
       list-style-position: inside;
     }
-    /* En móviles, apilar tarjetas */
+    /* En mÃ³viles, apilar tarjetas */
     @media (max-width: 720px){
       .about-cards { flex-direction: column; align-items: stretch; }
       .about-card { max-width: none; }
@@ -721,7 +739,7 @@
       }
     }
 
-    /* Dropdown personalizado para categorías (mantiene select oculto para compatibilidad) */
+    /* Dropdown personalizado para categorÃ­as (mantiene select oculto para compatibilidad) */
     .category-box { display:flex; align-items:center; gap:8px; background:transparent; padding:0; position:relative; }
 
     .custom-select {
@@ -732,7 +750,7 @@
       display:inline-flex;
       align-items:center;
       gap:10px;
-      /* más oscuro para mayor contraste */
+      /* mÃ¡s oscuro para mayor contraste */
       background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.34));
       color:#fff;
       border: 1px solid rgba(255,255,255,0.08);
@@ -780,7 +798,7 @@
       .select-options { width: 220px; left:0; right:auto; }
       .select-toggle { padding:8px 10px; }
     }
-    /* Mejora: estilos para sección de contacto */
+    /* Mejora: estilos para secciÃ³n de contacto */
     .contact-section {
       padding: 60px 20px;
       background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.5));
@@ -795,7 +813,7 @@
       margin: 0 auto;
       gap: 0;
     }
-    /* Form más destacado */
+    /* Form mÃ¡s destacado */
     .contact-form {
       background: rgba(0,0,0,0.55);
       padding: 24px;
@@ -827,7 +845,7 @@
       flex-wrap:wrap;
       justify-content: center; /* centrado horizontal */
     }
-    /* Centrar el botón y añadir animación */
+    /* Centrar el botÃ³n y aÃ±adir animaciÃ³n */
     @keyframes floatBtn {
       0%   { transform: translateY(0); }
       50%  { transform: translateY(-6px); }
@@ -835,7 +853,7 @@
     }
 
     .btn-send {
-      /* ahora usa el mismo degradado deslizante que .btn + animación flotante */
+      /* ahora usa el mismo degradado deslizante que .btn + animaciÃ³n flotante */
       background: linear-gradient(90deg,#000 0%, #fff 100%);
       background-size: 200% 100%;
       background-position: 0% 50%;
@@ -1056,4 +1074,5 @@
       border-top: 1px solid rgba(0,0,0,0.08);
       box-shadow: 0 -4px 20px rgba(15,23,42,0.08);
     }
+
 
