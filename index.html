@@ -5,57 +5,78 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="kEHSQQAMRjWBfBsd-cr3JBlu-MbdDOgsPNDNfAFrUM0" />
   <title>VISIONARY 3D</title>
-  <link rel="stylesheet" href="styles.css?v=20260301">
+  <link rel="stylesheet" href="styles.css?v=20260323-2">
   <link rel="icon" href="head/logo_nuevo_35px.jpg" sizes="32x32">
   <link rel="icon" href="head/logo_nuevo_192px.jpg" sizes="192x192">
 </head>
 <body>
 
 <header>
-  <h1 style="flex:1; text-align:center; margin:0;">VISIONARY 03D</h1>
-  <div class="menu-area">
-    <button type="button" class="theme-toggle" id="themeToggle" aria-label="Activar modo claro">Modo claro</button>
-    <span class="menu-label">Menú</span>
-    <div class="menu-toggle">☰</div>
+  <div class="brand-lockup">
+    <div class="brand-logo-frame">
+      <img src="redes/logo_nuevo.png" alt="Logo VISIONARY 3D" class="brand-logo">
+    </div>
+    <h1>Impresión 3D personalizada en Colombia</h1>
   </div>
   <nav>
     <ul>
       <li><a href="#" data-section="hero">Inicio</a></li>
       <li><a href="#" data-section="services">Servicios</a></li>
       <li><a href="#" data-section="products">Productos</a></li>
+      <li><a href="#" data-section="kits">Kits de pintura</a></li>
       <li><a href="#" data-section="contact">Contacto</a></li>
       <li><a href="#" data-section="about">¿Quiénes somos?</a></li>
     </ul>
   </nav>
+  <div class="menu-area">
+    <button type="button" class="theme-toggle" id="themeToggle" aria-label="Activar modo claro">Modo claro</button>
+    <span class="menu-label">Menú</span>
+    <div class="menu-toggle">☰</div>
+  </div>
 </header>
 
 <section id="hero" class="hero">
-  <div style="display:flex; flex-direction:column; align-items:center;">
-    <img src="redes/logo_nuevo.jpg" alt="Logo VISIONARY 3D" class="logo-circle">
-    <div class="social-area">
-      <span class="social-title">Síguenos en nuestras redes sociales</span>
-      <div class="social-buttons">
-        <a class="social-btn" href="https://instagram.com/visionary_03d" target="_blank" title="Instagram">
-          <img src="redes/instagram.jpg" alt="Instagram" class="social-icon">
-        </a>
-        <a class="social-btn" href="https://www.facebook.com/share/1CSvLumiHK/" target="_blank" title="Facebook">
-          <img src="redes/facebook.png" alt="Facebook" class="social-icon facebook-icon">
-        </a>
-        <a class="social-btn" href="https://www.tiktok.com/@visionary03d" target="_blank" title="TikTok">
-          <img src="redes/tiktok.png" alt="TikTok" class="social-icon tiktok-icon">
-        </a>
-      </div>
-    </div>
-  </div>
   <div class="hero-copy">
-    <h2>Impresión 3D personalizada en Colombia</h2>
+    <p class="hero-kicker">Visionary 03D</p>
+    <h2>Servicios de impresión 3D en Colombia</h2>
     <p>De idea a pieza real con diseño, precisión y acabados que destacan.</p>
     <p class="hero-microcopy">Creamos figuras, llaveros y proyectos a medida para estudio, regalo o negocio.</p>
-        <button type="button" class="btn hero-cta-btn" onclick="showSection('contact')">
-      <span>Realiza tu pedido ya</span>
-      <img src="redes/wasap.png" alt="WhatsApp" class="hero-cta-icon">
-    </button>
   </div>
+  <div class="social-area hero-social-area">
+    <span class="social-title">Síguenos en nuestras redes sociales</span>
+    <div class="social-buttons">
+      <a class="social-btn" href="https://instagram.com/visionary_03d" target="_blank" title="Instagram">
+        <img src="redes/instagram.jpg" alt="Instagram" class="social-icon">
+      </a>
+      <a class="social-btn" href="https://www.facebook.com/share/1CSvLumiHK/" target="_blank" title="Facebook">
+        <img src="redes/facebook.png" alt="Facebook" class="social-icon facebook-icon">
+      </a>
+      <a class="social-btn social-btn-tiktok" href="https://www.tiktok.com/@visionary03d" target="_blank" title="TikTok">
+        <img src="redes/tiktok.png" alt="TikTok" class="social-icon tiktok-icon">
+      </a>
+    </div>
+  </div>
+  <article class="kits-highlight" data-target-section="kits" role="button" tabindex="0" aria-label="Ver kits de pintura">
+    <img src="kits de pintura/referencias/seccion_kits.png" alt="Kit creativo de pintura VISIONARY 3D" class="kits-highlight-image">
+  </article>
+  <div class="hero-services-block">
+    <h3 class="hero-section-title">Servicios</h3>
+    <div class="hero-services-grid">
+      <article class="hero-service-card" data-target-section="services" role="button" tabindex="0" aria-label="Ver servicios de diseño 3D">
+        <h4>Diseño 3D</h4>
+        <p>Diseños personalizados para tus proyectos y piezas creadas a la medida de tu idea.</p>
+      </article>
+      <article class="hero-service-card" data-target-section="services" role="button" tabindex="0" aria-label="Ver servicios de impresión 3D">
+        <h4>Impresión 3D</h4>
+        <p>Piezas funcionales, decorativas y personalizadas según tus necesidades y gustos.</p>
+      </article>
+      <article class="hero-service-card" data-target-section="services" role="button" tabindex="0" aria-label="Ver proyectos completos">
+        <h4>Proyectos completos</h4>
+        <p>Incluye diseño 3D, impresión, componentes electrónicos, montaje y entrega final lista para uso.</p>
+      </article>
+    </div>
+  </div>
+  <h3 class="hero-section-title">Productos destacados</h3>
   <div class="hero-showcase" aria-label="Productos destacados">
     <article class="hero-showcase-item" data-target-section="products" role="button" tabindex="0" aria-label="Ver productos destacados">
       <img src="productos/bowser.jpg" alt="Figura de Sonic">
@@ -72,6 +93,37 @@
     <article class="hero-showcase-item" data-target-section="products" role="button" tabindex="0" aria-label="Ver productos destacados">
       <img src="productos/inozuque.jpg" alt="Funko personalizado">
       <p>Diseños 100% personalizados</p>
+    </article>
+  </div>
+</section>
+
+<section id="kits">
+  <h2>Kits de pintura</h2>
+  <p class="kits-section-intro">Explora nuestra nueva línea de kits listos para pintar, coleccionar y regalar.</p>
+  <div class="kits-list">
+    <article class="kit-card">
+      <div class="kit-card-media">
+        <span class="kit-card-badge">Nueva linea creativa</span>
+        <img src="kits de pintura/productos/kit creativo.jpg" alt="Kit creativo de pintura VISIONARY 3D">
+      </div>
+      <div class="kit-card-content">
+        <p class="kit-eyebrow">Kit creativo VISIONARY</p>
+        <h3>Pinta tu propio personaje y hazlo unico</h3>
+        <p>Perfecto para regalar o disfrutar en casa. Abre tu kit, pinta cada detalle a tu estilo y convierte la figura en una pieza especial hecha por ti.</p>
+        <div class="kit-benefits" aria-label="Beneficios del kit creativo">
+          <span class="kit-benefit">No necesitas experiencia</span>
+          <span class="kit-benefit">Ideal para regalo</span>
+          <span class="kit-benefit">Incluye figura, pinturas y pincel</span>
+          <span class="kit-benefit">Listo para disfrutar en casa</span>
+        </div>
+        <div class="kit-purchase">
+          <div class="kit-price-block">
+            <span class="kit-price-label">Precio de lanzamiento</span>
+            <p class="kit-price"><strong>$45.000</strong></p>
+          </div>
+          <button class="btn kit-buy-btn" onclick="buyProduct('Kit creativo VISIONARY')">Comprar kit</button>
+        </div>
+      </div>
     </article>
   </div>
 </section>

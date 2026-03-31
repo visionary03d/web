@@ -1,18 +1,22 @@
 ﻿const THEME_KEY = "visionary-theme";
   const themeToggle = document.getElementById("themeToggle");
   const THEME_ICON_BREAKPOINT = 560;
+  const SUN_ICON = '<svg class="theme-toggle-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.8V5.2M12 18.8v2.4M21.2 12h-2.4M5.2 12H2.8M18.5 5.5 16.8 7.2M7.2 16.8 5.5 18.5M18.5 18.5 16.8 16.8M7.2 7.2 5.5 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+  const MOON_ICON = '<svg class="theme-toggle-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 14.2A8.5 8.5 0 1 1 9.8 4c-.1.4-.1.8-.1 1.2a8.7 8.7 0 0 0 8.7 8.7c.5 0 1-.1 1.6-.2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>';
 
   function updateThemeToggleContent(isLight){
     const compactToggle = window.innerWidth <= THEME_ICON_BREAKPOINT;
+    const nextLabel = isLight ? "Modo oscuro" : "Modo claro";
+    const nextIcon = isLight ? MOON_ICON : SUN_ICON;
     if (compactToggle) {
       themeToggle.classList.add("compact");
-      themeToggle.textContent = isLight ? "â˜€ï¸" : "ðŸŒ™";
-      themeToggle.setAttribute("title", isLight ? "Cambiar a modo oscuro" : "Cambiar a modo claro");
+      themeToggle.innerHTML = nextIcon;
+      themeToggle.setAttribute("title", `Cambiar a ${nextLabel.toLowerCase()}`);
       return;
     }
 
     themeToggle.classList.remove("compact");
-    themeToggle.textContent = isLight ? "Modo oscuro" : "Modo claro";
+    themeToggle.innerHTML = `${nextIcon}<span class="theme-toggle-label">${nextLabel}</span>`;
     themeToggle.setAttribute("title", "");
   }
 
@@ -56,7 +60,7 @@
     document.body.style.overflow = "";
   }
 
-  document.querySelectorAll("#productGrid .card img").forEach(img => {
+  document.querySelectorAll("#productGrid .card img, .kit-card img").forEach(img => {
     img.addEventListener("click", () => openImageViewer(img.src, img.alt));
   });
 
@@ -89,8 +93,8 @@
       showSection(e.target.dataset.section);
     });
   });
-  // Accesos directos desde el bloque destacado del inicio hacia productos
-  document.querySelectorAll(".hero-showcase-item[data-target-section]").forEach(item => {
+  // Accesos directos desde el inicio hacia otras secciones
+  document.querySelectorAll(".hero-showcase-item[data-target-section], .kits-highlight[data-target-section], .hero-service-card[data-target-section]").forEach(item => {
     const targetSection = item.dataset.targetSection;
     item.addEventListener("click", () => showSection(targetSection));
     item.addEventListener("keydown", (e) => {
