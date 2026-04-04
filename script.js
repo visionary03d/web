@@ -130,13 +130,14 @@
     let name=document.getElementById("name").value;
     let msg=document.getElementById("message").value;
     let text=`Hola, soy ${name}. Deseo: ${msg}`;
-    let url=`https://wa.me/573229191519?text=${encodeURIComponent(text)}`;
+    let url=`https://wa.me/573015379422?text=${encodeURIComponent(text)}`;
     window.open(url,"_blank");
   }
   // Comprar producto
   function buyProduct(product){
-    let text=`Hola, quiero comprar el artÃ­culo: ${product}`;
-    let url=`https://wa.me/573007258766?text=${encodeURIComponent(text)}`;
+    const safeProduct = String(product ?? "").normalize("NFC");
+    let text=`Hola, quiero comprar el articulo: ${safeProduct}`;
+    let url=`https://wa.me/573015379422?text=${encodeURIComponent(text)}`;
     window.open(url,"_blank");
   }
   // Filtrar productos por bÃºsqueda y categorÃ­a
