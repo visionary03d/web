@@ -270,7 +270,7 @@
       backdrop-filter: blur(10px);
     }
     .hero::before {
-      content: "";
+      content: none;
       position: absolute;
       inset: 16px;
       border-radius: 24px;
@@ -418,7 +418,7 @@
     }
     .kits-highlight {
       width: calc(100% - 40px);
-      max-width: 1080px;
+      max-width: 940px;
       display: block;
       margin: 0 auto;
       padding: 0;
@@ -428,7 +428,7 @@
       cursor: pointer;
       z-index: 1;
       overflow: hidden;
-      aspect-ratio: 2.62 / 1;
+      aspect-ratio: 3 / 1;
       --kits-image-position: 50% 50%;
       --kits-image-scale: 1.07;
       transition: transform 0.2s ease;
@@ -969,7 +969,7 @@
       }
       .kits-highlight {
         width: 100%;
-        aspect-ratio: 2.58 / 1;
+        aspect-ratio: 2.8 / 1;
         border-radius: 18px;
         --kits-image-position: 50% 50%;
         --kits-image-scale: 1.09;
