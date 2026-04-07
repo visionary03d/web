@@ -418,14 +418,14 @@
     }
     .kits-highlight {
       width: calc(100% - 40px);
-      max-width: 900px;
+      max-width: 980px;
       position: relative;
       display: grid;
-      grid-template-columns: minmax(0, 1.16fr) minmax(210px, 0.84fr);
+      grid-template-columns: minmax(0, 1.62fr) minmax(180px, 0.38fr);
       align-items: center;
-      gap: 16px;
+      gap: 0;
       margin: 0 auto;
-      padding: 22px 26px;
+      padding: 22px 28px;
       border-radius: 26px;
       background:
         radial-gradient(circle at 16% 18%, rgba(105,144,255,0.34), transparent 28%),
@@ -466,7 +466,7 @@
       flex-direction: column;
       align-items: flex-start;
       gap: 10px;
-      max-width: 470px;
+      max-width: none;
       text-align: left;
     }
     .kits-highlight-kicker {
@@ -480,34 +480,37 @@
     .kits-highlight-copy h3 {
       margin: 0;
       color: #fff;
-      font-size: clamp(1.42rem, 2.45vw, 2.8rem);
+      font-size: clamp(2.3rem, 3.8vw, 4.15rem);
       line-height: 0.95;
       letter-spacing: -0.05em;
       text-transform: uppercase;
       text-wrap: balance;
-      max-width: 12ch;
+      max-width: 17ch;
       text-shadow: 0 10px 24px rgba(3,10,24,0.22);
     }
     .kits-highlight-text {
       margin: 0;
       color: rgba(255,255,255,0.95);
-      font-size: clamp(0.92rem, 1.15vw, 1.08rem);
+      font-size: clamp(1.12rem, 1.42vw, 1.28rem);
       line-height: 1.4;
-      max-width: 25ch;
+      max-width: 42ch;
     }
     .kits-highlight-stage {
       min-height: 100%;
       height: 100%;
       pointer-events: auto;
       isolation: isolate;
+      width: min(100%, 620px);
+      justify-self: start;
+      margin-left: -132px;
     }
     .kits-heart-trail {
       position: absolute;
-      width: clamp(132px, 18vw, 198px);
+      width: clamp(392px, 38vw, 474px);
       height: auto;
-      left: 66%;
-      top: 47%;
-      transform: translate(-50%, -50%) scale(0.9);
+      left: 52%;
+      top: 57%;
+      transform: translate(-50%, -50%) scale(1);
       pointer-events: none;
       z-index: 2;
       opacity: 0;
@@ -621,15 +624,15 @@
       filter: drop-shadow(0 18px 34px rgba(4,10,24,0.3));
     }
     .kits-figure-bubble {
-      width: clamp(72px, 10vw, 112px);
-      right: 27%;
-      top: 16%;
+      width: clamp(198px, 19vw, 238px);
+      left: -12%;
+      top: 24%;
       animation: kitsFloatBubble 5s ease-in-out infinite;
     }
     .kits-figure-nova {
-      width: clamp(88px, 12vw, 128px);
-      right: 5%;
-      top: 14%;
+      width: clamp(236px, 22.4vw, 284px);
+      left: 25.5%;
+      top: 20%;
       animation: kitsFloatNova 4.6s ease-in-out infinite 0.4s;
     }
     @keyframes kitsFloatBubble {
@@ -1229,57 +1232,73 @@
       }
       .kits-highlight {
         width: 100%;
-        grid-template-columns: minmax(0, 1fr) 146px;
-        gap: 8px;
-        padding: 14px 14px;
+        grid-template-columns: minmax(0, 1fr) 206px;
+        gap: 4px;
+        padding: 14px 12px;
         aspect-ratio: auto;
-        min-height: 168px;
+        min-height: 176px;
         border-radius: 18px;
       }
       .kits-highlight-copy {
         gap: 6px;
         max-width: none;
+        align-items: flex-start;
+        text-align: left;
       }
       .kits-highlight-kicker {
         font-size: 0.62rem;
         letter-spacing: 0.12em;
       }
       .kits-highlight-copy h3 {
-        font-size: clamp(0.92rem, 4.2vw, 1.34rem);
-        max-width: 9ch;
+        font-size: clamp(1.1rem, 4.7vw, 1.52rem);
+        max-width: 10ch;
       }
       .kits-highlight-text {
-        font-size: 0.74rem;
-        line-height: 1.28;
-        max-width: 16ch;
+        font-size: 0.78rem;
+        line-height: 1.32;
+        max-width: 18ch;
       }
       .kits-highlight-stage {
-        min-height: 136px;
+        min-height: 148px;
+        width: 100%;
+        margin-left: -6px;
+        justify-self: start;
       }
       .kits-heart-trail {
         display: none;
       }
       .kits-figure-bubble {
-        width: 66px;
-        right: 34%;
-        top: 20%;
+        width: 210px;
+        left: auto;
+        right: 40%;
+        top: 2%;
       }
       .kits-figure-nova {
-        width: 82px;
-        right: 6%;
-        top: 18%;
+        width: 252px;
+        left: auto;
+        right: -8%;
+        top: -6%;
       }
       .kits-highlight-glow-a {
-        width: 70px;
-        height: 70px;
+        width: 72px;
+        height: 72px;
+        right: 32%;
+        left: auto;
+        top: 18%;
       }
       .kits-highlight-glow-b {
-        width: 84px;
-        height: 84px;
+        width: 86px;
+        height: 86px;
+        right: 0%;
+        left: auto;
+        top: 12%;
       }
       .kits-highlight-glow-c {
         width: 88px;
         height: 88px;
+        right: 14%;
+        left: auto;
+        bottom: 8%;
       }
       .kits-highlight-spark {
         transform: scale(0.72);
