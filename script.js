@@ -104,6 +104,33 @@
       }
     });
   });
+  const kitsStage = document.querySelector(".kits-highlight-stage");
+  if (kitsStage) {
+    const kitsFigures = kitsStage.querySelectorAll(".kits-figure");
+    let kitsPlayTimer;
+    const canAnimateKitsStage = () => window.innerWidth > 720;
+    const triggerKitsPlay = () => {
+      if (!canAnimateKitsStage()) return;
+      kitsStage.classList.remove("is-heart-drawing");
+      window.clearTimeout(kitsPlayTimer);
+      void kitsStage.offsetWidth;
+      kitsStage.classList.add("is-heart-drawing");
+      kitsPlayTimer = window.setTimeout(() => {
+        kitsStage.classList.remove("is-heart-drawing");
+      }, 1750);
+    };
+    kitsStage.addEventListener("mouseenter", () => {
+      if (canAnimateKitsStage()) triggerKitsPlay();
+    });
+    kitsFigures.forEach(figure => {
+      figure.addEventListener("click", (e) => {
+        if (!canAnimateKitsStage()) return;
+        e.preventDefault();
+        e.stopPropagation();
+        triggerKitsPlay();
+      });
+    });
+  }
   // Iniciar en Hero
   showSection("hero");
   // MenÃº toggle mÃ³vil
