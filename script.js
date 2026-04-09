@@ -60,7 +60,7 @@
     document.body.style.overflow = "";
   }
 
-  document.querySelectorAll("#productGrid .card img, .kit-card img").forEach(img => {
+  document.querySelectorAll("#productGrid .card img, .kit-card-main-image").forEach(img => {
     img.addEventListener("click", () => openImageViewer(img.src, img.alt));
   });
 
@@ -131,6 +131,48 @@
       });
     });
   }
+  document.querySelectorAll(".kit-character-stage").forEach(stage => {
+    const characterItems = stage.querySelectorAll(".kit-character");
+    let stagePlayTimer;
+    const triggerKitCharacterPlay = () => {
+      stage.classList.remove("is-animating");
+      window.clearTimeout(stagePlayTimer);
+      void stage.offsetWidth;
+      stage.classList.add("is-animating");
+      stagePlayTimer = window.setTimeout(() => {
+        stage.classList.remove("is-animating");
+      }, 3600);
+    };
+
+    const bindKitCharacterTrigger = (target) => {
+      if (window.PointerEvent) {
+        target.addEventListener("pointerdown", () => {
+          triggerKitCharacterPlay();
+        });
+        return;
+      }
+
+      target.addEventListener("touchstart", () => {
+        triggerKitCharacterPlay();
+      }, { passive: true });
+
+      target.addEventListener("mousedown", () => {
+        triggerKitCharacterPlay();
+      });
+    };
+
+    bindKitCharacterTrigger(stage);
+    characterItems.forEach(character => {
+      bindKitCharacterTrigger(character);
+    });
+
+    stage.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        triggerKitCharacterPlay();
+      }
+    });
+  });
   // Iniciar en Hero
   showSection("hero");
   // MenÃº toggle mÃ³vil
